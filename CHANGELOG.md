@@ -1,3 +1,15 @@
+## [2.0.0](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/compare/1.0.0...2.0.0) (2023-01-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* set the project name
+
+### Build and continuous integration
+
+* set the project name ([4239a4c](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/4239a4c4a54bcc32fa255b6b9a6e7106f6cdf0e5))
+* validate the Gradle wrapper on Linux only ([759b318](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/759b318ec297de4b4c2c1f60a4245327a5d2fa9a))
+
 ## 1.0.0 (2023-01-24)
 
 
