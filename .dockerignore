@@ -6,6 +6,16 @@
 build/
 charts/
 data/
+Interpolated-data-1km-grid/
+Interpolated-data-2km-grid/
+NO2/
+NOx/
+O3/
+PM10/
+PM10-data/
+PM25/
+POD6/
+data-summary.jdata.zstd
 release.config.js
 renovate.json
 package-lock.json
