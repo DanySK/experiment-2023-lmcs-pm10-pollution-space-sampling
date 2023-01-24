@@ -11,4 +11,4 @@ gradleEnterprise {
 }
 
 enableFeaturePreview("VERSION_CATALOGS")
-rootProject.name = "alchemist-experiments-bootstrap"
+rootProject.name = "experiment-2023-lmcs-pm10-pollution-space-sampling"
