@@ -1,3 +1,20 @@
+## 1.0.0 (2023-01-24)
+
+
+### Features
+
+* add kotlin script that downloads data from fme.discomap.eea.europa.eu ([4cea246](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/4cea246a5a89b71058ad9dc41fa9c12a9d309c4a))
+
+
+### Dependency updates
+
+* **deps:** update python docker tag to v3.11.1 ([d701b5f](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/d701b5fa8e1c06d9a27e5e8f1f2ea20c562434ab))
+
+
+### Build and continuous integration
+
+* **container:** ignore data of non-PM10 pollutants ([ba40ed6](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/ba40ed62c65dba2507e2b9afc43d019dede322d4))
+
 ## [1.1.2](https://github.com/DanySK/alchemist-experiments-bootstrap/compare/1.1.1...1.1.2) (2023-01-24)
 
 
