@@ -10,5 +10,4 @@ gradleEnterprise {
     }
 }
 
-enableFeaturePreview("VERSION_CATALOGS")
 rootProject.name = "experiment-2023-lmcs-pm10-pollution-space-sampling"

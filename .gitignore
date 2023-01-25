@@ -4,5 +4,10 @@
 .spyproject/
 build/
 charts/
-data_summary_*
+PM10-data/
+data-summary*
+entries.jdata
+pm10locations.csv
+PM10-data.tar.zst
+test.main.kts
 timeprocessed

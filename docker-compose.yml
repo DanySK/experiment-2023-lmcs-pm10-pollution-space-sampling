@@ -1,26 +1,54 @@
 version: '3'
 services:
+
   prepare:
     image: alpine:3.17.1
     volumes:
       - .:/experiment:rw
+      - ./scripts:/scripts:rw
     entrypoint: /bin/sh -c
+    command: /scripts/create-folders.sh
+
+  recreate-dataset:
+    depends_on:
+      prepare:
+        condition: service_completed_successfully
+    profiles:
+      - create-data
+    image: danysk/${PROJECT_NAME:-unknown}-create-dataset:${VERSION:-latest}
+    build:
+      dockerfile: ./docker/preprocess/Dockerfile
+      context: .
+    volumes:
+      - ./PM10-data:/experiment/PM10-data
     command:
       - |
-        mkdir -p /experiment/data
-        chmod 777 /experiment/data
-        mkdir -p /experiment/charts
-        chmod 777 /experiment/charts
+        /experiment/refine-locations.main.kts
+        /experiment/download-all-PMD10-data.main.kts
+        /experiment/cleanup-PMD10-data.main.kts
+        mv /experiment/data-summary.json.zstd /experiment/PM10-summary/data-summary.json.zstd
+
+  download-dataset:
+    image: curlimages/curl:7.87.0
+    volumes:
+      - ./PM10-summary:/output:rw
+    command: -sL https://zenodo.org/record/7546592/files/data-summary.json.zstd?download=1 -o /output/data-summary.json.zstd
+
+  # TODO: decompress, import into mongo
+
   simulation:
     depends_on:
       prepare:
+        condition: service_completed_successfully
+      download-dataset:
         condition: service_completed_successfully
     image: danysk/${PROJECT_NAME:-unknown}-simulation:${VERSION:-latest}
     build:
       dockerfile: ./docker/sim/Dockerfile
       context: .
     volumes:
-     - ./data:/experiment/data
+     - ./PM10-summary:/experiment/PM10-summary:rw
+
   charts:
     depends_on:
       prepare:
@@ -34,6 +62,7 @@ services:
     volumes:
       - ./data:/experiment/data
       - ./charts:/experiment/charts
+
   finish:
     depends_on:
       charts:
