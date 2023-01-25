@@ -1,3 +1,10 @@
+## [2.1.0](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/compare/2.0.0...2.1.0) (2023-01-25)
+
+
+### Features
+
+* refine the infrastructure ([0def358](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/0def358ebb64da5d2023afbea5fd885d77ef6e60))
+
 ## [2.0.0](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/compare/1.0.0...2.0.0) (2023-01-24)
 
 
