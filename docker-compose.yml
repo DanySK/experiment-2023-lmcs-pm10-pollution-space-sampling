@@ -30,11 +30,23 @@ services:
 
   download-dataset:
     image: curlimages/curl:7.87.0
+    build:
+        dockerfile: ./docker/download/Dockerfile
+        context: .
     volumes:
       - ./PM10-summary:/output:rw
-    command: -sL https://zenodo.org/record/7546592/files/data-summary.json.zstd?download=1 -o /output/data-summary.json.zstd
 
-  # TODO: decompress, import into mongo
+
+  decompress-dataset:
+    depends_on:
+      download-dataset:
+        condition: service_completed_successfully
+    image: danysk/zstd:1.5.2
+    volumes:
+      - ./PM10-summary:/output:rw
+    command: unzstd /output/data-summary.json.zstd
+
+  # TODO import into mongo
 
   simulation:
     depends_on:
