@@ -1,3 +1,16 @@
+## [2.1.1](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/compare/2.1.0...2.1.1) (2023-01-26)
+
+
+### Bug Fixes
+
+* **compose:** skip downloads if the database is available ([0cbd805](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/0cbd8055a899a470325f3c9c863be5e0a9d9505d))
+
+
+### Dependency updates
+
+* **deps:** update dependency com.github.doyaaaaaken:kotlin-csv-jvm to v1.7.0 ([e7d7475](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/e7d7475d22e8ed13e773de14a0682f7457fcbba4))
+* **deps:** update dependency org.apache.commons:commons-compress to v1.22 ([93f50fd](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/93f50fd167751d1fdc2b87be77cc3e3af10141e4))
+
 ## [2.1.0](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/compare/2.0.0...2.1.0) (2023-01-25)
 
 
