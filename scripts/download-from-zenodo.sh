@@ -11,8 +11,10 @@ LINK_AND_MD5="$(
 )"
 echo "Filtered response: $LINK_AND_MD5"
 FILE="/output/$(echo "$LINK_AND_MD5" | jq -r '.name')"
-MD5="$(echo "$LINK_AND_MD5" | jq -r '.checksum'))"
-if [ -s "$FILE" ] && [ "$(md5sum "$FILE" | awk '{print $1}')" = "$MD5" ]; then
+MD5="$(echo "$LINK_AND_MD5" | jq -r '.checksum')"
+FILE_MD5="$(md5sum "$FILE" | awk '{print $1}')"
+echo "Expected MD5: $MD5, actual MD5: $FILE_MD5"
+if [ -s "$FILE" ] && [ "$FILE_MD5" = "$MD5" ]; then
   echo "File $FILE already exists and checksum matches $MD5, skipping download"
 else
   URL="$(echo "$LINK_AND_MD5" | jq -r '.link')"

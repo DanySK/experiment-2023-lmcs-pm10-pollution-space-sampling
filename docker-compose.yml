@@ -46,7 +46,7 @@ services:
     image: danysk/zstd:1.5.2
     volumes:
       - ./PM10-summary:/output:rw
-    command: unzstd /output/data-summary.json.zstd
+    command: '[ -e "/output/data-summary.json.zstd" ] || unzstd "/output/data-summary.json.zstd"'
 
   # TODO import into mongo
 
