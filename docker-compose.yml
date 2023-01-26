@@ -29,13 +29,15 @@ services:
         mv /experiment/data-summary.json.zstd /experiment/PM10-summary/data-summary.json.zstd
 
   download-dataset:
-    image: curlimages/curl:7.87.0
+    depends_on:
+      prepare:
+        condition: service_completed_successfully
+    image: danysk/${PROJECT_NAME:-unknown}-download-dataset:${VERSION:-latest}
     build:
         dockerfile: ./docker/download/Dockerfile
         context: .
     volumes:
       - ./PM10-summary:/output:rw
-
 
   decompress-dataset:
     depends_on:
