@@ -62,7 +62,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3.3.0
     - name: Run compose
-      run: docker-compose up --build
+      run: |
+        docker compose down
+        docker compose up --build
   release:
     needs:
       - check-simulations-native
