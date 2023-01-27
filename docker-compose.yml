@@ -48,12 +48,33 @@ services:
       - ./PM10-summary:/output:rw
     command: '[ -e "/output/data-summary.json.zstd" ] || unzstd "/output/data-summary.json.zstd"'
 
-  # TODO import into mongo
+  start-db:
+    depends_on:
+      decompress-dataset:
+        condition: service_completed_successfully
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+
+  populate-db:
+    depends_on:
+      start-db:
+        condition: service_started
+    image: mongo:6.0
+    network_mode: host
+    restart: "no"
+    volumes:
+      - ./PM10-summary:/PM10-summary
+    command: /usr/bin/mongoimport --type json --collection pm10 --jsonArray --file /PM10-summary/data-summary.json
 
   simulation:
     depends_on:
       prepare:
         condition: service_completed_successfully
+      populate-db:
+        condition: service_completed_successfully
+      start-db:
+        condition: service_started
       download-dataset:
         condition: service_completed_successfully
     image: danysk/${PROJECT_NAME:-unknown}-simulation:${VERSION:-latest}
