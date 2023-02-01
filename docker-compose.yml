@@ -46,12 +46,24 @@ services:
     image: danysk/zstd:1.5.2
     volumes:
       - ./PM10-summary:/output:rw
-    command: '[ -e "/output/data-summary.json.zstd" ] || unzstd "/output/data-summary.json.zstd"'
+    command: '[ -e "/output/data-summary.json" ] || unzstd "/output/data-summary.json.zstd"'
 
-  start-db:
+  reduce-dataset:
     depends_on:
       decompress-dataset:
         condition: service_completed_successfully
+    image: alpine:3.17.1
+    volumes:
+      - ./PM10-summary:/PM10-summary:rw
+#    command: >-
+#      echo "ciao $CI --" && [ -z "$CI" ] && echo "$(head -n2 /PM10-summary/data-summary.json | rev | cut -c100- | rev)\n]" >> /PM10-summary/test.json
+    command:
+      - sh
+      - '-c'
+      - |
+        [ -z "$CI" ] && head -n2 /PM10-summary/data-summary.json | awk '{print substr($0,0,length($0)-1)"\n]"}' > /PM10-summary/test.json
+
+  start-db:
     image: mongo:6.0
     ports:
       - "27017:27017"
