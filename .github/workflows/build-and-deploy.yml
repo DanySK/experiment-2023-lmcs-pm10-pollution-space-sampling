@@ -64,6 +64,7 @@ jobs:
     - name: Run compose
       run: |
         docker compose down
+        docker compose run --build reduce-dataset
         docker compose up --build
   release:
     needs:

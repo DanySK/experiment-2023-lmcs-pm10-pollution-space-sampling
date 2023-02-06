@@ -1,10 +1,5 @@
-FROM alpine:3.17.1 as jq
-RUN apk update
-RUN apk add --no-cache jq oniguruma
+FROM danysk/kotlin:1.8.10
 
-FROM curlimages/curl:7.87.0
-COPY --from=jq /usr/bin/jq /usr/bin/jq
-COPY --from=jq /usr/lib/libonig.so.5 /usr/lib/libonig.so.5
-COPY --from=jq /usr/lib/libonig.so.5.3.0 /usr/lib/libonig.so.5.3.0
-COPY scripts/download-from-zenodo.sh /usr/local/bin/download.sh
-ENTRYPOINT ["/bin/sh", "/usr/local/bin/download.sh"]
+COPY scripts/reduce-large-file.main.kts /usr/local/bin/reduce-large-file.main.kts
+RUN /usr/local/bin/reduce-large-file.main.kts || true
+ENTRYPOINT ["/usr/local/bin/reduce-large-file.main.kts"]

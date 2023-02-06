@@ -1,5 +1,2 @@
 #!/bin/sh
-for folder in 'data' 'charts' 'PM10-data' 'PM10-summary'; do
-  mkdir -p "/experiment/$folder"
-  chmod 777 "/experiment/$folder"
-done
+head -n2 /PM10-summary/data-summary.json | awk '{print substr($0,0,length($0)-1)"\n]"}' > /PM10-summary/test.json
