@@ -1,3 +1,29 @@
+## [2.2.0](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/compare/2.1.1...2.2.0) (2023-02-07)
+
+
+### Features
+
+* **compose:** prepare the db import ([ac06081](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/ac0608198ac5baa17a7bb06dd024b929bb22150c))
+
+
+### Bug Fixes
+
+* **compose:** manually manage the dependencies via pipeline.sh ([ed1750e](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/ed1750e6edc0d1e0c29645e11f7160a38ba51f93))
+
+
+### Build and continuous integration
+
+* always rebuild the container images ([8e07c7c](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/8e07c7cfee0f780b15eee3cbed0e9890cd8c77b9))
+* try to bring the container down before bringing it up ([8a550e6](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/8a550e66fdc7a064fc1a0cd6e1141c18637229e2))
+
+
+### Dependency updates
+
+* **deps:** update alchemist to v25.10.0 ([42d15a9](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/42d15a982fc77e062fe76491326ebff7c5474e34))
+* **deps:** update alchemist to v25.8.0 ([c0434ec](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/c0434ecbd9807dc1c88251e52d19f56fc4b6ca7c))
+* **deps:** update alchemist to v25.9.0 ([c513891](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/c513891de02524b92be7ce4c933482bc73d613bc))
+* **deps:** update node.js to 18.14 ([eed1ebd](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/eed1ebd4fc2910b4a85aa1c93a4b8ae1937a723b))
+
 ## [2.1.1](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/compare/2.1.0...2.1.1) (2023-01-26)
 
 
