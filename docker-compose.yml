@@ -1,4 +1,4 @@
-version: '3'
+version: '3.9'
 services:
 
   prepare:
@@ -43,23 +43,46 @@ services:
     depends_on:
       download-dataset:
         condition: service_completed_successfully
-    image: danysk/zstd:1.5.2
+    image: danysk/${PROJECT_NAME:-unknown}-decompress:${VERSION:-latest}
+    build:
+      dockerfile: ./docker/decompress/Dockerfile
+      context: .
     volumes:
       - ./PM10-summary:/output:rw
-    command: '[ -e "/output/data-summary.json.zstd" ] || unzstd "/output/data-summary.json.zstd"'
 
-  start-db:
+  reduce-dataset:
     depends_on:
       decompress-dataset:
         condition: service_completed_successfully
+    image: danysk/${PROJECT_NAME:-unknown}-reduce-dataset:${VERSION:-latest}
+    build:
+      dockerfile: ./docker/reduce/Dockerfile
+      context: .
+    volumes:
+      - ./PM10-summary:/PM10-summary:rw
+    profiles:
+      - testing
+    command: '/PM10-summary/data-summary.json /PM10-summary/data-summary.json'
+
+  start-db:
     image: mongo:6.0
+    init: true
     ports:
       - "27017:27017"
+    healthcheck:
+      test: |
+        host=`hostname --ip-address || echo '127.0.0.1'`;
+        mongo --quiet $${host}/test --eval 'quit(db.runCommand({ ping: 1 }).ok ? 0 : 2)' && echo 0 || echo 1
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   populate-db:
     depends_on:
       start-db:
-        condition: service_started
+        condition: service_healthy
+#      reduce-dataset:
+#        condition: service_completed_successfully
     image: mongo:6.0
     network_mode: host
     restart: "no"
