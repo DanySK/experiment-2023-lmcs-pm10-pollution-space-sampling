@@ -70,7 +70,9 @@ services:
     ports:
       - "27017:27017"
     healthcheck:
-      test: echo 'db.runCommand("ping").ok' | mongo localhost:27017/test --quiet
+      test: |
+        host=`hostname --ip-address || echo '127.0.0.1'`;
+        mongo --quiet $${host}/test --eval 'quit(db.runCommand({ ping: 1 }).ok ? 0 : 2)' && echo 0 || echo 1
       interval: 10s
       timeout: 5s
       retries: 3
@@ -79,8 +81,8 @@ services:
     depends_on:
       start-db:
         condition: service_healthy
-      reduce-dataset:
-        condition: service_completed_successfully
+#      reduce-dataset:
+#        condition: service_completed_successfully
     image: mongo:6.0
     network_mode: host
     restart: "no"

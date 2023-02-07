@@ -62,10 +62,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3.3.0
     - name: Run compose
-      run: |
-        docker compose down
-        docker compose run --build reduce-dataset
-        docker compose up --build
+      run: ./pipeline.sh
   release:
     needs:
       - check-simulations-native

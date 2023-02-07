@@ -9,13 +9,17 @@ import java.io.File
 require(args.size == 2) {
     "ERROR: wrong argument count. Supplied ${args.size}: $args.\nUsage: reduce-large-file.main.kts <input> <output>"
 }
-val reader = JsonReader(File(args[0]).reader())
-reader.beginArray()
-var count = 0
 data class Entry(val name: String, val latitude: Double, val longitude: Double, val samples: List<List<Float>>)
 val result = mutableListOf<Entry>()
-while (reader.hasNext() && count < 15) {
-    result.add(Gson().fromJson(reader, Entry::class.java))
-    count++
+File(args[0]).reader().use { fileReader ->
+    val reader = JsonReader(fileReader)
+    reader.beginArray()
+    var count = 0
+    while (reader.hasNext() && count < 15) {
+        result.add(Gson().fromJson(reader, Entry::class.java))
+        count++
+    }
 }
-Gson().toJson(result, File(args[1]).writer())
+File(args[1]).writer().use {
+    Gson().toJson(result, it)
+}
