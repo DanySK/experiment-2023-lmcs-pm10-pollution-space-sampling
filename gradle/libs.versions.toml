@@ -4,11 +4,14 @@ kotlin = "1.8.0"
 
 [libraries]
 alchemist = { module = "it.unibo.alchemist:alchemist", version.ref = "alchemist" }
+alchemist-maps = { module = "it.unibo.alchemist:alchemist-maps", version.ref = "alchemist" }
 alchemist-protelis = { module = "it.unibo.alchemist:alchemist-incarnation-protelis", version.ref = "alchemist" }
 alchemist-scafi = { module = "it.unibo.alchemist:alchemist-incarnation-scafi", version.ref = "alchemist" }
+kmongo = "org.litote.kmongo:kmongo:4.8.0"
 
 [bundles]
 alchemist-protelis = [ "alchemist", "alchemist-protelis" ]
+alchemist-pm10 = [ "alchemist-maps" ]
 
 [plugins]
 gitSemVer = { id = "org.danilopianini.git-sensitive-semantic-versioning", version = "1.0.1" }

@@ -13,6 +13,9 @@ variables:
     type: ArbitraryVariable
     parameters: [0.1, [0.1, 0.2]]
 
+environment:
+  type: OSMEnvironment
+
 seeds:
   scenario: *seed
   simulation: *seed
@@ -33,14 +36,7 @@ _gradient: &gradient
   - program: send
 
 deployments:
-  type: Grid
-  parameters: [-5, -5, 5, 5, *spacing, *spacing, *error, *error]
-  contents:
-    - in:
-        type: Rectangle
-        parameters: [-6, -6, 2, 2]
-      molecule: source
-      concentration: true
+  type: PM10
   programs: *gradient
 
 export:
