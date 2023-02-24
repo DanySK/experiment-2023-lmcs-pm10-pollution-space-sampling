@@ -26,7 +26,7 @@ jobs:
           echo 'github.event.pull_request.head.repo.full_name = ${{ github.event.pull_request.head.repo.full_name }}'
           echo 'github.repository = ${{ github.repository }}'
           echo 'github.head_ref = ${{ github.head_ref }}'
-          echo 'secrets = ${{ secrets }}'
+          echo 'secrets = ${{ fromJson(secrets) }}'
   dispatcher:
     runs-on: ubuntu-latest
     # This filter blocks all pull-request builds that also have a branch build.
