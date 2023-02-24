@@ -90,6 +90,7 @@ jobs:
   success:
     runs-on: ubuntu-22.04
     needs:
+      - check-simulations-docker
       - create-charts
       - release
     if: >-
