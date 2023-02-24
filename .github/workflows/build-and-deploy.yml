@@ -91,7 +91,6 @@ jobs:
     runs-on: ubuntu-22.04
     needs:
       - create-charts
-      - check-simulations-native
       - release
     if: >-
       always() && (
