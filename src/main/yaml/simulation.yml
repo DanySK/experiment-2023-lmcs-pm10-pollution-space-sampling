@@ -6,6 +6,13 @@ variables:
     max: 1
     step: 1
     default: 0
+  frequency: &frequency
+    formula: 1 / 3600 / 1000 # milliseconds
+  duration: &duration
+    formula: 9 * 365 * 24 * 3600 * 1000 # 9 years in milliseconds
+  firstTime:
+    formula: 1_356_996_500_000L
+    language: kotlin
   spacing: &spacing
     type: ArbitraryVariable
     parameters: [0.25, [0.25, 0.5]]
@@ -21,17 +28,10 @@ seeds:
   simulation: *seed
 
 network-model:
-  type: ConnectWithinDistance
-  parameters: [0.5]
+  type: Pm10Connections
 
 _gradient: &gradient
-  - time-distribution: 1
-    # Writing Protelis programs within a YAML file is a bad experience
-    # (some characters need escaping, no syntax highlight, no code suggestions...)
-    # We recommend using the Protelis Eclipse plugin to write your code, then
-    # Loading the code as a module within Alchemist
-    # In order to run this example, make sure that src/main/protelis is part of
-    # your classpath (the Gradle script is already properly configured).
+  - time-distribution: *frequency
     program: org:protelis:tutorial:distanceTo
   - program: send
 
@@ -62,4 +62,4 @@ export:
 
 terminate:
   type: AfterTime
-  parameters: 150
+  parameters: *duration

@@ -8,6 +8,7 @@ alchemist-maps = { module = "it.unibo.alchemist:alchemist-maps", version.ref = "
 alchemist-protelis = { module = "it.unibo.alchemist:alchemist-incarnation-protelis", version.ref = "alchemist" }
 alchemist-scafi = { module = "it.unibo.alchemist:alchemist-incarnation-scafi", version.ref = "alchemist" }
 kmongo = "org.litote.kmongo:kmongo:4.8.0"
+caffeine = "com.github.ben-manes.caffeine:caffeine:3.1.4"
 
 [bundles]
 alchemist-protelis = [ "alchemist", "alchemist-protelis" ]

@@ -65,17 +65,18 @@ private data class ValuesQuery(val samples: List<List<Number>>) {
 fun valuesAfter(name: String, time: Long, count: Int) = collection.aggregate<ValuesQuery>(
     match(Entry::name eq name),
     project(Entry::samples)
-).first()!!.samples.let { samples ->
+).first()?.samples?.let { samples ->
     val start = samples.closestTo(time) { first().toLong() }
-    samples.subList(start, start + count)
-}
+    samples.slice(start..(start + count).coerceAtMost(samples.size - 1))
+} ?: error("No values found for $name after $time")
 
-fun idOf(index: Int) = sortedEntries()
-        .withoutSamples()
-        .skip(index)
-        .limit(1)
-        .first()
-        ?: error("Unable to find the id of the $index-th entry")
+fun idOf(index: Int): String = sortedEntries()
+    .withoutSamples()
+    .skip(index)
+    .limit(1)
+    .first()
+    ?.getString("name")
+    ?: error("Unable to find the id of the $index-th entry")
 
 fun sortedEntries(): FindIterable<Document> {
     collection.ensureIndex(Entry::name)
