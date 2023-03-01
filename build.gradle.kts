@@ -43,6 +43,7 @@ dependencies {
     implementation(libs.bundles.alchemist.pm10)
     implementation(libs.kmongo)
     implementation(libs.caffeine)
+    implementation("it.unibo.alchemist:alchemist-swingui:${libs.versions.alchemist.get()}")
     if (!GraphicsEnvironment.isHeadless()) {
         implementation("it.unibo.alchemist:alchemist-swingui:${libs.versions.alchemist.get()}")
     }

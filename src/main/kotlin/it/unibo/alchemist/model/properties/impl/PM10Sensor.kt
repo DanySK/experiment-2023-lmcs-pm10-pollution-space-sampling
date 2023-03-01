@@ -19,7 +19,7 @@ private val DataItem.pm10: Float get() = get(1).toFloat()
 object PM10Sensor {
 
     const val idLabel = "station-id"
-    const val chunkSize = 1000
+    const val chunkSize = 250
 
     val data = Caffeine.newBuilder()
         .weakKeys()

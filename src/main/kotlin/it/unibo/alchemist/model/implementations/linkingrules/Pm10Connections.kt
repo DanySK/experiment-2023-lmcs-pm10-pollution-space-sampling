@@ -22,7 +22,7 @@ class Pm10Connections : LinkingRule<Any, GeoPosition> {
         }
         val closeby = environment.getNodesWithinRange(center, 1_000_000.0)
             .sortedBy { environment.getDistanceBetweenNodes(center, it) }
-            .take(10)
+            .take(3)
         return Neighborhoods.make(environment, center, closeby + listOfNotNull(previous, next))
     }
 

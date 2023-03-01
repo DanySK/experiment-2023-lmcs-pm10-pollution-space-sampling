@@ -1,5 +1,43 @@
 module org:protelis:tutorial:distanceTo
 
+import protelis:coord:spreading
+import protelis:coord:meta:timereplication
+import protelis:coord:nonselfstabilizing:accumulation
+import protelis:lang:utils
+import protelis:state:time
 import it.unibo.alchemist.model.properties.impl.PM10Sensor.readPm10
 
-readPm10()
+def Candidacy(symmetryBreaker, distance, leaderId) = [symmetryBreaker, distance, leaderId]
+def candidacySymmetryBreaker(candidacy) = candidacy.get(0)
+def candidacyDistance(candidacy) = candidacy.get(1)
+def candidacyLeaderId(candidacy) = candidacy.get(2)
+def worstCandidacy() = Candidacy(POSITIVE_INFINITY, POSITIVE_INFINITY, POSITIVE_INFINITY)
+def fmp(candidacy, localId, radius) =
+	mux (candidacyLeaderId(candidacy) == localId || candidacyDistance(candidacy) >= radius) {
+		worstCandidacy()
+	} else {
+		candidacy
+	}
+
+def selfstabFaster(mid, radius, symmetryBreaker, metric) {
+	let local = Candidacy(-symmetryBreaker, 0, mid)
+	candidacyLeaderId(
+		share (received <- local) {
+			let candidacies = received.set(1, received.get(1) + metric())
+			let filtered = fmp(candidacies, mid, radius)
+			min(local, foldMin(worstCandidacy(), filtered))
+		}
+	)
+}
+
+let pm10 = readPm10()
+let country = env.get("station-id").substring(0, 2)
+let mid = self.getDeviceUID().getId()
+
+// let bycountry = selfstabFaster(mid, 1000000, mid) { nbrRange() }
+let bycountry = selfstabFaster(mid, 1000000, mid) {
+	mux (country == nbr(country)) { 1 } else { 10000000 }
+}
+env.put("bycountry", bycountry)
+
+pm10
