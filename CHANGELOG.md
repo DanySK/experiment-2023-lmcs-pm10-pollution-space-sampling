@@ -1,3 +1,57 @@
+## [2.3.0](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/compare/2.2.0...2.3.0) (2023-03-02)
+
+
+### Features
+
+* add more deployment details ([055edc0](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/055edc04e3df1b649b42909673283b56e328780d))
+
+
+### Build and continuous integration
+
+* **deps:** update danysk/build-check-deploy-gradle-action action to v2.1.22 ([23e2da9](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/23e2da9e6ddf3a32039cd74ccafbdf5f0f5c035e))
+* **deps:** update danysk/build-check-deploy-gradle-action action to v2.1.23 ([39a3c79](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/39a3c7980b73412115d14a5b6db69270e49d3cca))
+* **deps:** update danysk/build-check-deploy-gradle-action action to v2.1.24 ([d24e09d](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/d24e09d5711b775c5883d5f6b39d442c25978bbe))
+* **deps:** update danysk/build-check-deploy-gradle-action action to v2.1.25 ([f732d69](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/f732d6942d2dc4b53a1faf996e698906cdaac913))
+
+
+### General maintenance
+
+* **release:** 2.3.0 [skip ci] ([ae0a370](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/ae0a370fb769cc23b7d7fc5bfa18e95d12802e7b))
+* **release:** 2.3.0 [skip ci] ([8fc71bd](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/8fc71bd1ef651d910d9dabdc951af2c762066e6c))
+* **release:** 2.3.0 [skip ci] ([898312d](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/898312d638d1d319e30628882c86790bacfc6771))
+* **release:** 2.3.0 [skip ci] ([ea7866f](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/ea7866f460ae90351b746419c574d690d732ce9f))
+* **release:** 2.3.0 [skip ci] ([120ffb0](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/120ffb02c6b0e2b85999b3e63e1a167c40dbddcd))
+* **release:** 2.3.0 [skip ci] ([6a082eb](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/6a082eb40b763a77ef55c3bd09fa807e1962ce87))
+* **release:** 2.3.0 [skip ci] ([d67e959](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/d67e9591f5f864ef45ee9e3cec75b665c4653dd5))
+* **release:** 2.3.0 [skip ci] ([1fa5138](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/1fa5138d083bd41bbf2f1cdefe09679e55bcd13f))
+* **release:** 2.3.0 [skip ci] ([d4ba02c](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/d4ba02c1775503de87c363b86ed5535f01c00054))
+
+
+### Dependency updates
+
+* **deps:** update alchemist to v25.11.0 ([e9160a8](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/e9160a8aaa895663dd6cc95b9cc84c350d229af2))
+* **deps:** update alchemist to v25.14.3 ([f6cd46f](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/f6cd46fc1f043bd30d4ff80ddc8ceecf9c187700))
+* **deps:** update alchemist to v25.14.4 ([5b3d268](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/5b3d268e0aa9172cca9de74a4bc65d18f8cd9cb8))
+* **deps:** update alpine docker tag to v3.17.2 ([0a79283](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/0a7928371cb2328e7a0784a8997b771e27742413))
+* **deps:** update curlimages/curl docker tag to v7.88.1 ([b317d01](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/b317d0154de5b2181c8405ae2a2351f786f38a0c))
+* **deps:** update danysk/zstd docker tag to v1.5.4 ([fe0e0f3](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/fe0e0f31588fb1007379e71f6beb4a8c7f061d0b))
+* **deps:** update dependency com.github.doyaaaaaken:kotlin-csv-jvm to v1.8.0 ([2c7d247](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/2c7d247384f248eed39116c4043d11d48c109322))
+* **deps:** update dependency gradle to v8 ([f38f768](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/f38f768563a0c3439c87a41e98969861e7d03294))
+* **deps:** update dependency it.unibo.alchemist:alchemist to v25.12.0 ([a956b7a](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/a956b7a69bb5dac782f01b602e835938a86e5241))
+* **deps:** update dependency matplotlib to v3.7.0 ([28d21be](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/28d21be7913c2ef146e1a3f54071f978f4747602))
+* **deps:** update dependency org.jetbrains.kotlin.jvm to v1.8.10 ([312c265](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/312c265552d10bc2c9628a52a26f27ae3d4245b4))
+* **deps:** update dependency org.jetbrains.kotlinx:kotlinx-serialization-json to v1.5.0 ([eac1459](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/eac14594c3947d382ce8f356046ef82a4c026f3a))
+* **deps:** update dependency xarray to v2023.2.0 ([6dbc907](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/6dbc907132b18e8384ced07622d25bf0db2c4ead))
+* **deps:** update plugin com.gradle.enterprise to v3.12.3 ([92f9549](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/92f9549d566835ecf38d7e3f1bf629158ecd3015))
+* **deps:** update plugin com.gradle.enterprise to v3.12.4 ([57c3b90](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/57c3b905b57d9111977e8ac66574a02f6f936872))
+* **deps:** update plugin gitsemver to v1.0.2 ([9a550c3](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/9a550c37c8c9b59f66f5cad19c45fb9f2b0936ac))
+* **deps:** update plugin gitsemver to v1.1.1 ([4c716f8](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/4c716f8c77ec6d83bbbe8a09a0f063b2d379af05))
+* **deps:** update plugin kotlin-qa to v0.34.1 ([465bee1](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/465bee1a1270baa38876d24b7d1e72a83b46e016))
+* **deps:** update plugin kotlin-qa to v0.34.2 ([5d853cc](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/5d853cca00a8f16c6fdb1887bf06f81721871b94))
+* **deps:** update plugin kotlin-qa to v0.35.0 ([1255006](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/1255006001f69d82bd85630e52631a2e91e02200))
+* **deps:** update plugin multijvmtesting to v0.4.17 ([b2992d5](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/b2992d55c252b3c64ef8c17c243e84acaf618e4e))
+* **deps:** update python docker tag to v3.11.2 ([31017a4](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/commit/31017a4d3e3aff7bf106055ce564dcbf31530a40))
+
 ## [2.3.0](https://github.com/DanySK/experiment-2023-lmcs-pm10-pollution-space-sampling/compare/2.2.0...2.3.0) (2023-03-01)
 
 
