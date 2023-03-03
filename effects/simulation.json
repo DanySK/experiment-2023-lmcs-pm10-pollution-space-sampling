@@ -81,7 +81,7 @@
     "alpha": {
       "max": 255,
       "min": 0,
-      "val": 255
+      "val": 2
     },
     "scaleFactor": {
       "max": 100,
@@ -91,32 +91,32 @@
     "size": {
       "max": 100,
       "min": 0,
-      "val": 14
+      "val": 100
     },
     "molFilter": true,
-    "molString": "org:protelis:tutorial:distanceTo",
+    "molString": "pm10",
     "molPropertyFilter": true,
     "property": "",
     "writingPropertyValue": false,
-    "c": "RED",
+    "c": "ALPHA",
     "reverse": false,
     "propoom": {
       "max": 10,
       "min": -10,
-      "val": 2
+      "val": 3
     },
     "minprop": {
       "max": 10,
       "min": -10,
-      "val": -1
+      "val": 0
     },
     "maxprop": {
       "max": 10,
       "min": -10,
-      "val": 1
+      "val": 4
     },
     "colorCache": {
-      "value": -16777216
+      "value": 33554432
     }
   },
   {
@@ -151,10 +151,10 @@
     "size": {
       "max": 100,
       "min": 0,
-      "val": 14
+      "val": 15
     },
     "molFilter": true,
-    "molString": "bycountry",
+    "molString": "pm10-variance",
     "molPropertyFilter": true,
     "property": "\u003cvalue\u003e % 91",
     "writingPropertyValue": false,
@@ -177,6 +177,66 @@
     },
     "colorCache": {
       "value": -65536
+    }
+  },
+  {
+    "type": "class it.unibo.alchemist.boundary.gui.effects.DrawShape",
+    "curIncarnation": "protelis",
+    "mode": "FILL_ELLIPSE",
+    "red": {
+      "max": 255,
+      "min": 0,
+      "val": 86
+    },
+    "blue": {
+      "max": 255,
+      "min": 0,
+      "val": 84
+    },
+    "green": {
+      "max": 255,
+      "min": 0,
+      "val": 84
+    },
+    "alpha": {
+      "max": 255,
+      "min": 0,
+      "val": 255
+    },
+    "scaleFactor": {
+      "max": 100,
+      "min": 0,
+      "val": 50
+    },
+    "size": {
+      "max": 100,
+      "min": 0,
+      "val": 18
+    },
+    "molFilter": true,
+    "molString": "pm10-variance",
+    "molPropertyFilter": true,
+    "property": "\u003cvalue\u003e \u003d\u003d self.getDeviceUID().getId()",
+    "writingPropertyValue": false,
+    "c": "ALPHA",
+    "reverse": false,
+    "propoom": {
+      "max": 10,
+      "min": -10,
+      "val": 0
+    },
+    "minprop": {
+      "max": 10,
+      "min": -10,
+      "val": 0
+    },
+    "maxprop": {
+      "max": 10,
+      "min": -10,
+      "val": 1
+    },
+    "colorCache": {
+      "value": -11119532
     }
   }
 ]

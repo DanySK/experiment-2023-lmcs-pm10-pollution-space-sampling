@@ -34,6 +34,11 @@ let pm10 = readPm10()
 let country = env.get("station-id").substring(0, 2)
 let mid = self.getDeviceUID().getId()
 
+// policies: pure distance, pm10 variance, entrambe con e senza limite al confine
+let pm10Variance = selfstabFaster(mid, 5000000, pm10) {
+	(pm10 - nbr(pm10)) ^ 2 * nbrRange()
+}
+env.put("pm10-variance", pm10Variance)
 // let bycountry = selfstabFaster(mid, 1000000, mid) { nbrRange() }
 let bycountry = selfstabFaster(mid, 1000000, mid) {
 	mux (country == nbr(country)) { 1 } else { 10000000 }

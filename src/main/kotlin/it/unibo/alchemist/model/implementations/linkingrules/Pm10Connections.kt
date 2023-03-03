@@ -12,19 +12,46 @@ class Pm10Connections : LinkingRule<Any, GeoPosition> {
         center: Node<Any>,
         environment: Environment<Any, GeoPosition>,
     ): Neighborhood<Any> {
-        val previous = when {
-            center.id > 1 -> environment.nodes[center.id - 1]
-            else -> null
+        val rangeLink = 100_000.0
+        val minNeighbors = 1
+        val maxNeighbors = 6
+        val close = environment.getNodesWithinRange(center, rangeLink)
+            .asSequence()
+            .map { it to environment.getDistanceBetweenNodes(center, it) }
+            .sortedBy { it.second }
+            .take(maxNeighbors)
+            .toMap()
+            .toMutableMap()
+        var farthest: Pair<Node<Any>, Double>? = null
+        if (close.size < minNeighbors) {
+            for (node in environment.nodes) {
+                if (node != center) {
+                    val distance = environment.getDistanceBetweenNodes(center, node)
+                    when {
+                        farthest == null -> {
+                            farthest = node to distance
+                            close[node] = distance
+                        }
+
+                        close.size < minNeighbors -> {
+                            close[node] = distance
+                            if (distance > farthest.second) {
+                                farthest = node to distance
+                            }
+                        }
+
+                        distance < farthest.second -> {
+                            close.remove(farthest.first)
+                            close[node] = distance
+                            farthest = close.maxBy { it.value }.toPair()
+                        }
+                    }
+                }
+            }
         }
-        val next = when {
-            center.id < environment.nodes.size - 1 -> environment.nodes[center.id + 1]
-            else -> null
-        }
-        val closeby = environment.getNodesWithinRange(center, 1_000_000.0)
-            .sortedBy { environment.getDistanceBetweenNodes(center, it) }
-            .take(3)
-        return Neighborhoods.make(environment, center, closeby + listOfNotNull(previous, next))
+        return Neighborhoods.make(environment, center, close.keys)
     }
 
     override fun isLocallyConsistent(): Boolean = true
+
 }

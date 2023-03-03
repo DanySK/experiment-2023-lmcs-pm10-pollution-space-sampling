@@ -15,7 +15,8 @@ import kotlin.streams.asStream
 class PM10() : Deployment<GeoPosition> {
 
     override fun stream(): Stream<GeoPosition> = sortedEntries()
-        .projection(fields(include(Entry::latitude, Entry::longitude)))
+        .projection(fields(include(Entry::name, Entry::latitude, Entry::longitude)))
+        .distinctBy { it["name"] }
         .map {
             LatLongPosition(it["latitude"].doublyfy(), it["longitude"].doublyfy())
         }
