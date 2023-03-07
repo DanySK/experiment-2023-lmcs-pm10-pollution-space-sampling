@@ -9,19 +9,19 @@ import jdk.jfr.FlightRecorder
 import org.litote.kmongo.fields
 import org.litote.kmongo.findValue
 import org.litote.kmongo.include
+import org.litote.kmongo.project
 import java.util.stream.Stream
 import kotlin.streams.asStream
 
 class PM10() : Deployment<GeoPosition> {
 
-    override fun stream(): Stream<GeoPosition> = sortedEntries()
-        .projection(fields(include(Entry::name, Entry::latitude, Entry::longitude)))
-        .distinctBy { it["name"] }
-        .map {
-            LatLongPosition(it["latitude"].doublyfy(), it["longitude"].doublyfy())
-        }
-        .asSequence()
-        .asStream()
+    override fun stream(): Stream<GeoPosition> =
+        sortedEntries(false, project(Entry::name, Entry::latitude, Entry::longitude))
+            .map {
+                LatLongPosition(it["latitude"].doublyfy(), it["longitude"].doublyfy())
+            }
+            .asSequence()
+            .asStream()
 
     companion object {
         private fun Any?.doublyfy(): Double = when(this) {

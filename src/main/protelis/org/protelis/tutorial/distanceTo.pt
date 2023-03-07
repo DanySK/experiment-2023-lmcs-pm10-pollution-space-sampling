@@ -6,6 +6,7 @@ import protelis:coord:nonselfstabilizing:accumulation
 import protelis:lang:utils
 import protelis:state:time
 import it.unibo.alchemist.model.properties.impl.PM10Sensor.readPm10
+import it.unibo.alchemist.model.properties.impl.PM10Sensor.aqi
 
 def Candidacy(symmetryBreaker, distance, leaderId) = [symmetryBreaker, distance, leaderId]
 def candidacySymmetryBreaker(candidacy) = candidacy.get(0)
@@ -31,18 +32,40 @@ def selfstabFaster(mid, radius, symmetryBreaker, metric) {
 }
 
 let pm10 = readPm10()
+let aqiValue = aqi(pm10)
 let country = env.get("station-id").substring(0, 2)
+env.put("country-id", country)
 let mid = self.getDeviceUID().getId()
+let nbrCountry = nbr(country)
+let nbrRangeNow = nbrRange() + 1000
+let nbrAqi = nbr(aqiValue)
 
-// policies: pure distance, pm10 variance, entrambe con e senza limite al confine
-let pm10Variance = selfstabFaster(mid, 5000000, pm10) {
-	(pm10 - nbr(pm10)) ^ 2 * nbrRange()
-}
-env.put("pm10-variance", pm10Variance)
-// let bycountry = selfstabFaster(mid, 1000000, mid) { nbrRange() }
-let bycountry = selfstabFaster(mid, 1000000, mid) {
-	mux (country == nbr(country)) { 1 } else { 10000000 }
+// By country
+let bycountry = selfstabFaster(mid, 1000, mid) {
+	mux (country == nbrCountry) { 1 } else { POSITIVE_INFINITY }
 }
 env.put("bycountry", bycountry)
+
+// PM10 + distance
+let pm10Variance = selfstabFaster(mid, 2000000, pm10) {
+	nbrRangeNow + 1000000 * abs(aqiValue - nbrAqi)
+}
+env.put("pm10-variance", pm10Variance)
+
+// PM10 + distance per-country
+let pm10VarianceBorder = selfstabFaster(mid, 2000000, pm10) {
+	mux(country == nbrCountry) { nbrRangeNow + 1000000 * abs(aqiValue - nbrAqi) } else { POSITIVE_INFINITY }
+}
+env.put("pm10-variance-border", pm10VarianceBorder)
+
+// 200km-bubble
+let distance = selfstabFaster(mid, 200000, pm10) { nbrRangeNow }
+env.put("distance", distance)
+
+// 200km-bubble with border
+let distanceBorder = selfstabFaster(mid, 200000, pm10) {
+	mux(country == nbrCountry) { nbrRangeNow } else { POSITIVE_INFINITY }
+}
+env.put("distance-border", distanceBorder)
 
 pm10

@@ -115,7 +115,7 @@ File(rootProject.rootDir.path + "/src/main/yaml").listFiles()
             args(
                 "-e", "data/${it.nameWithoutExtension}",
                 "-b",
-                "-var", "seed", "spacing", "error",
+                "-var", "seed",
                 "-p", threadCount,
                 "-i", 1
             )

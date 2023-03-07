@@ -3,26 +3,30 @@ incarnation: protelis
 variables:
   seed: &seed
     min: 0
-    max: 1
+    max: 9
     step: 1
-    default: 0
+    default: 1000
   frequency: &frequency
     formula: 1 / 3600 / 1000 # milliseconds
+  oneHour: &one-hour
+    formula: 3600.0 * 1000.0 # milliseconds
+    language: kotlin
+  threeHours: &three-hours
+    formula: 3.0 * oneHour  # milliseconds
+    language: kotlin
   oneDay: &one-day
-    formula: 24.0 * 3600.0 * 1000.0 # milliseconds
+    formula: 24.0 * oneHour # milliseconds
+    language: kotlin
+  feb2020: &feb2020
+    formula: 1580511600.0 * 1000 # Unix timestamp Sat Feb 01 2020 00:00:00 GMT+0100 (Central European Standard Time)
+    language: kotlin
+  may2020: &feb2020
+    formula: 1588284000.0 * 1000 # Unix timestamp Fri May 01 2020 00:00:00 GMT+0200 (Central European Summer Time)
     language: kotlin
   duration: &duration
-    formula: 9.0 * 365.0 * oneDay # 9 years in milliseconds
+    formula: may2020 - feb2020 # 3 months
     language: kotlin
-  firstTime:
-    formula: 1_356_996_500_000L
-    language: kotlin
-  spacing: &spacing
-    type: ArbitraryVariable
-    parameters: [0.25, [0.25, 0.5]]
-  error: &error
-    type: ArbitraryVariable
-    parameters: [0.1, [0.1, 0.2]]
+
 
 environment:
   type: OSMEnvironment
@@ -56,13 +60,14 @@ export:
   - type: CSVExporter
     parameters:
       fileNameRoot: simulation
-      interval: *one-day
+      interval: *three-hours
       exportPath: data
     data:
       - time
-      - molecule: "org:protelis:tutorial:distanceTo"
-        aggregators: [mean, min, max]
-        value-filter: onlyfinite
+      - type: CoordDataEport
+#      - molecule: "org:protelis:tutorial:distanceTo"
+#        aggregators: [mean, min, max]
+#        value-filter: onlyfinite
 
 terminate:
   type: AfterTime

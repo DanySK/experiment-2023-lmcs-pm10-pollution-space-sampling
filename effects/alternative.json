@@ -21,6 +21,66 @@
     "alpha": {
       "max": 255,
       "min": 0,
+      "val": 2
+    },
+    "scaleFactor": {
+      "max": 100,
+      "min": 0,
+      "val": 50
+    },
+    "size": {
+      "max": 100,
+      "min": 0,
+      "val": 100
+    },
+    "molFilter": true,
+    "molString": "pm10",
+    "molPropertyFilter": true,
+    "property": "",
+    "writingPropertyValue": false,
+    "c": "ALPHA",
+    "reverse": false,
+    "propoom": {
+      "max": 10,
+      "min": -10,
+      "val": 3
+    },
+    "minprop": {
+      "max": 10,
+      "min": -10,
+      "val": 0
+    },
+    "maxprop": {
+      "max": 10,
+      "min": -10,
+      "val": 4
+    },
+    "colorCache": {
+      "value": 33554432
+    }
+  },
+  {
+    "type": "class it.unibo.alchemist.boundary.gui.effects.DrawShape",
+    "curIncarnation": "protelis",
+    "mode": "FILL_ELLIPSE",
+    "red": {
+      "max": 255,
+      "min": 0,
+      "val": 0
+    },
+    "blue": {
+      "max": 255,
+      "min": 0,
+      "val": 0
+    },
+    "green": {
+      "max": 255,
+      "min": 0,
+      "val": 0
+    },
+    "alpha": {
+      "max": 255,
+      "min": 0,
       "val": 255
     },
     "scaleFactor": {
@@ -76,12 +136,12 @@
     "green": {
       "max": 255,
       "min": 0,
-      "val": 0
+      "val": 228
     },
     "alpha": {
       "max": 255,
       "min": 0,
-      "val": 2
+      "val": 255
     },
     "scaleFactor": {
       "max": 100,
@@ -91,19 +151,19 @@
     "size": {
       "max": 100,
       "min": 0,
-      "val": 100
+      "val": 30
     },
     "molFilter": true,
-    "molString": "pm10",
-    "molPropertyFilter": true,
-    "property": "",
+    "molString": "aqi",
+    "molPropertyFilter": false,
+    "property": "\u003cvalue\u003e \u003d\u003d 0",
     "writingPropertyValue": false,
     "c": "ALPHA",
     "reverse": false,
     "propoom": {
       "max": 10,
       "min": -10,
-      "val": 3
+      "val": 0
     },
     "minprop": {
       "max": 10,
@@ -113,10 +173,130 @@
     "maxprop": {
       "max": 10,
       "min": -10,
-      "val": 4
+      "val": 1
     },
     "colorCache": {
-      "value": 33554432
+      "value": -16718848
+    }
+  },
+  {
+    "type": "class it.unibo.alchemist.boundary.gui.effects.DrawShape",
+    "curIncarnation": "protelis",
+    "mode": "FILL_ELLIPSE",
+    "red": {
+      "max": 255,
+      "min": 0,
+      "val": 255
+    },
+    "blue": {
+      "max": 255,
+      "min": 0,
+      "val": 0
+    },
+    "green": {
+      "max": 255,
+      "min": 0,
+      "val": 255
+    },
+    "alpha": {
+      "max": 255,
+      "min": 0,
+      "val": 255
+    },
+    "scaleFactor": {
+      "max": 100,
+      "min": 0,
+      "val": 50
+    },
+    "size": {
+      "max": 100,
+      "min": 0,
+      "val": 30
+    },
+    "molFilter": true,
+    "molString": "aqi",
+    "molPropertyFilter": true,
+    "property": "\u003cvalue\u003e \u003d\u003d 1",
+    "writingPropertyValue": false,
+    "c": "ALPHA",
+    "reverse": false,
+    "propoom": {
+      "max": 10,
+      "min": -10,
+      "val": 0
+    },
+    "minprop": {
+      "max": 10,
+      "min": -10,
+      "val": 0
+    },
+    "maxprop": {
+      "max": 10,
+      "min": -10,
+      "val": 1
+    },
+    "colorCache": {
+      "value": -256
+    }
+  },
+  {
+    "type": "class it.unibo.alchemist.boundary.gui.effects.DrawShape",
+    "curIncarnation": "protelis",
+    "mode": "FILL_ELLIPSE",
+    "red": {
+      "max": 255,
+      "min": 0,
+      "val": 255
+    },
+    "blue": {
+      "max": 255,
+      "min": 0,
+      "val": 0
+    },
+    "green": {
+      "max": 255,
+      "min": 0,
+      "val": 126
+    },
+    "alpha": {
+      "max": 255,
+      "min": 0,
+      "val": 255
+    },
+    "scaleFactor": {
+      "max": 100,
+      "min": 0,
+      "val": 50
+    },
+    "size": {
+      "max": 100,
+      "min": 0,
+      "val": 30
+    },
+    "molFilter": true,
+    "molString": "aqi",
+    "molPropertyFilter": true,
+    "property": "\u003cvalue\u003e \u003d\u003d 2",
+    "writingPropertyValue": false,
+    "c": "ALPHA",
+    "reverse": false,
+    "propoom": {
+      "max": 10,
+      "min": -10,
+      "val": 0
+    },
+    "minprop": {
+      "max": 10,
+      "min": -10,
+      "val": 0
+    },
+    "maxprop": {
+      "max": 10,
+      "min": -10,
+      "val": 1
+    },
+    "colorCache": {
+      "value": -33280
     }
   },
   {
@@ -216,14 +396,14 @@
     "molFilter": true,
     "molString": "pm10-variance",
     "molPropertyFilter": true,
-    "property": "\u003cvalue\u003e % 29",
+    "property": "\u003cvalue\u003e % 91",
     "writingPropertyValue": false,
     "c": "HUE",
     "reverse": false,
     "propoom": {
       "max": 10,
       "min": -10,
-      "val": 1
+      "val": 2
     },
     "minprop": {
       "max": 10,
@@ -233,7 +413,7 @@
     "maxprop": {
       "max": 10,
       "min": -10,
-      "val": 3
+      "val": 1
     },
     "colorCache": {
       "value": -65536
