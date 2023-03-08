@@ -3,6 +3,7 @@ import xarray as xr
 import re
 from pathlib import Path
 import collections
+import datetime
 
 def distance(val, ref):
     return abs(ref - val)
@@ -187,10 +188,10 @@ if __name__ == '__main__':
     experiments = ['simulation']
     floatPrecision = '{: 0.3f}'
     # Number of time samples 
-    timeSamples = 100
+    timeSamples = 500
     # time management
     minTime = 0
-    maxTime = 50
+    maxTime = 7772400000
     timeColumnName = 'time'
     logarithmicTime = False
     # One or more variables are considered random and "flattened"
@@ -230,17 +231,20 @@ if __name__ == '__main__':
         return r'\|' + x + r'\|'
 
     labels = {
-        'nodeCount': Measure(r'$n$', 'nodes'),
-        'harmonicCentrality[Mean]': Measure(f'${expected("H(x)")}$'),
-        'meanNeighbors': Measure(f'${expected(cardinality("N"))}$', 'nodes'),
-        'speed': Measure(r'$\|\vec{v}\|$', r'$m/s$'),
-        'msqer@harmonicCentrality[Max]': Measure(r'$\max{(' + mse(centrality_label) + ')}$'),
-        'msqer@harmonicCentrality[Min]': Measure(r'$\min{(' + mse(centrality_label) + ')}$'),
-        'msqer@harmonicCentrality[Mean]': Measure(f'${expected(mse(centrality_label))}$'),
-        'msqer@harmonicCentrality[StandardDeviation]': Measure(f'${stdev_of(mse(centrality_label))}$'),
-        'org:protelis:tutorial:distanceTo[max]': Measure(r'$m$', 'max distance'),
-        'org:protelis:tutorial:distanceTo[mean]': Measure(r'$m$', 'mean distance'),
-        'org:protelis:tutorial:distanceTo[min]': Measure(r'$m$', ',min distance'),
+        'bubble-count': Measure(r'$|R|$', 'regions'),
+        'bubble-size-mean': Measure(r'$\mu_R$', 'devices'),
+        'datasource': Measure('phenomena'),
+        'deployment': Measure('scenario'),
+        'intra-stdev-stdev': Measure(r'$\sigma(\sigma_s)$', 'signal unit'),
+        'intra-stdev-mean': Measure(r'$\mu(\sigma_s)$', 'signal unit'),
+        'inter-mean-stdev': Measure(r'$\sigma(\mu_s)$', 'signal unit'),
+        'bivariate': Measure(r'gauss'),
+        'multi': Measure(r'multi-gauss'),
+        'bycountry': Measure(r'B'),
+        'pm10-variance': Measure(r'$\sigma{}(PM_{10})$'),
+        'pm10-variance-border': Measure(r'$\sigma{}(PM_{10})_B$'),
+        'distance': Measure(r'$dist$'),
+        'distance-border': Measure(r'$dist_B$'),
     }
     def derivativeOrMeasure(variable_name):
         if variable_name.endswith('dt'):
@@ -348,6 +352,7 @@ if __name__ == '__main__':
     import matplotlib.cm as cmx
     matplotlib.rcParams.update({'axes.titlesize': 12})
     matplotlib.rcParams.update({'axes.labelsize': 10})
+
     def make_line_chart(xdata, ydata, title = None, ylabel = None, xlabel = None, colors = None, linewidth = 1, errlinewidth = 0.5, figure_size = (6, 4)):
         fig = plt.figure(figsize = figure_size)
         ax = fig.add_subplot(1, 1, 1)
@@ -366,6 +371,7 @@ if __name__ == '__main__':
                 ax.plot(xdata, data+error, label=None, color=last_color, linewidth=errlinewidth)
                 ax.plot(xdata, data-error, label=None, color=last_color, linewidth=errlinewidth)
         return (fig, ax)
+    
     def generate_all_charts(means, errors = None, basedir=''):
         viable_coords = { coord for coord in means.coords if means[coord].size > 1 }
         for comparison_variable in viable_coords - {timeColumnName}:
@@ -408,4 +414,29 @@ if __name__ == '__main__':
         current_experiment_errors = stdevs[experiment]
         generate_all_charts(current_experiment_means, current_experiment_errors, basedir = f'{experiment}/all')
         
+    
 # Custom charting
+    mean = means[experiment]
+    for metric in ["intra-stdev-mean", "intra-stdev-stdev", "intra-stdev-max", "intra-stdev-min", "inter-mean-stdev", "bubble-count", "bubble-size-mean"]:
+        ydata = {
+            label_for(expansion_type) : (mean[label], 0)
+            for expansion_type in [ "pm10-variance", "pm10-variance-border", "distance", "distance-border"]
+            if (label := f'{expansion_type}-{metric}')
+        }
+        fig, ax = make_line_chart(
+            title = r"$PM_{10}$" + f" in EU from 2020-02-01 to 2020-03-31: {label_for(metric)}",
+            xdata = mean[timeColumnName],
+            xlabel = unit_for(timeColumnName),
+            ylabel = unit_for(metric),
+            ydata = ydata,
+            colors = cmx.viridis,
+        )
+        ax.legend(ncol=4, loc='lower center')
+        ticks = np.arange(minTime, maxTime + 1, (maxTime - minTime) / 3)
+        ax.set_xticks(
+            ticks = ticks,
+            labels = [datetime.datetime.fromtimestamp(timestamp_ms / 1000.0 + 1580511600).strftime('%Y-%m-%d') for timestamp_ms in ticks],
+        )
+        
+            
+
