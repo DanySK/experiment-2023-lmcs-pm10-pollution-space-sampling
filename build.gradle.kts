@@ -122,3 +122,15 @@ File(rootProject.rootDir.path + "/src/main/yaml").listFiles()
         }
         runAllBatch.dependsOn(batch)
     }
+
+tasks.distTar.configure {
+    enabled = false
+}
+
+tasks.distZip.configure {
+    enabled = false
+}
+
+tasks.withType<Copy>().configureEach {
+    duplicatesStrategy = DuplicatesStrategy.WARN
+}
