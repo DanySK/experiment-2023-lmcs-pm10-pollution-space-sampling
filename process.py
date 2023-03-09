@@ -431,12 +431,23 @@ if __name__ == '__main__':
             ydata = ydata,
             colors = cmx.viridis,
         )
-        ax.legend(ncol=4, loc='lower center')
         ticks = np.arange(minTime, maxTime + 1, (maxTime - minTime) / 3)
+        ax.set_xlim(minTime, maxTime)
         ax.set_xticks(
             ticks = ticks,
             labels = [datetime.datetime.fromtimestamp(timestamp_ms / 1000.0 + 1580511600).strftime('%Y-%m-%d') for timestamp_ms in ticks],
         )
-        
+        minVal = min([x[0].where(x[0].time > 1000).min() for x in ydata.values()])
+        maxVal = max([x[0].where(x[0].time > 1000).max() for x in ydata.values()])
+        print(f'{metric} {minVal}')
+        span = maxVal - minVal
+        if 'stdev' in metric:
+            ax.set_yscale('log')
+            ax.legend(ncol = 2, loc='upper right')
+        else:
+            ax.set_ylim(minVal - span * 0.2, maxVal + span * 0.05)
+            ax.legend(ncol=4, loc='lower center')
+        fig.tight_layout()
+        fig.savefig(f'{output_directory}/{metric}.pdf')
             
 
