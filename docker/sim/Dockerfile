@@ -9,7 +9,7 @@ COPY *.kts ./
 COPY *.properties ./
 RUN sed -i '/alias(libs.plugins.gitSemVer)/d' build.gradle.kts
 COPY gradlew* ./
-RUN CI=true ./gradlew build
+RUN CI=true ./gradlew assemble
 RUN CI=true ./gradlew clean
 RUN rm -rf data
 RUN ./gradlew --stop
