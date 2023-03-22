@@ -1,7 +1,7 @@
 #!/usr/bin/env kotlin
 @file:Repository("https://repo.maven.apache.org/maven2")
 @file:DependsOn("com.github.doyaaaaaken:kotlin-csv-jvm:1.8.0")
-@file:DependsOn("org.apache.commons:commons-compress:1.22")
+@file:DependsOn("org.apache.commons:commons-compress:1.23.0")
 @file:DependsOn("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 
 import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
