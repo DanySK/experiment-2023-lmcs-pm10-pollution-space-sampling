@@ -1,4 +1,4 @@
-FROM alpine:3.17.2 as jq
+FROM alpine:3.17.3 as jq
 RUN apk update
 RUN apk add --no-cache jq oniguruma
 
