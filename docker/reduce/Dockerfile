@@ -1,4 +1,4 @@
-FROM danysk/kotlin:1.8.10
+FROM danysk/kotlin:1.8.20
 
 COPY scripts/reduce-large-file.main.kts /usr/local/bin/reduce-large-file.main.kts
 RUN /usr/local/bin/reduce-large-file.main.kts || true
