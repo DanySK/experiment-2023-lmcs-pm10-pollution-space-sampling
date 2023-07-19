@@ -2,7 +2,7 @@ FROM alpine:3.18.2 as jq
 RUN apk update
 RUN apk add --no-cache jq oniguruma
 
-FROM curlimages/curl:8.1.2
+FROM curlimages/curl:8.2.0
 COPY --from=jq /usr/bin/jq /usr/bin/jq
 COPY --from=jq /usr/lib/libonig.so.5 /usr/lib/libonig.so.5
 COPY --from=jq /usr/lib/libonig.so.5.3.0 /usr/lib/libonig.so.5.3.0
