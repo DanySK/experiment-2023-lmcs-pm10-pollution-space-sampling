@@ -1,6 +1,6 @@
 #!/usr/bin/env kotlin
 @file:Repository("https://repo.maven.apache.org/maven2")
-@file:DependsOn("com.github.doyaaaaaken:kotlin-csv-jvm:1.9.1")
+@file:DependsOn("com.github.doyaaaaaken:kotlin-csv-jvm:1.9.2")
 
 import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 import com.github.doyaaaaaken.kotlincsv.dsl.csvWriter
