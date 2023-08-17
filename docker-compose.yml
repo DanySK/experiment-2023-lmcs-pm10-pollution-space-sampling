@@ -65,7 +65,7 @@ services:
     command: '/PM10-summary/data-summary.json /PM10-summary/data-summary.json'
 
   start-db:
-    image: mongo:6.0
+    image: mongo:7.0
     init: true
     ports:
       - "27017:27017"
@@ -83,7 +83,7 @@ services:
         condition: service_healthy
 #      reduce-dataset:
 #        condition: service_completed_successfully
-    image: mongo:6.0
+    image: mongo:7.0
     network_mode: host
     restart: "no"
     volumes:
